@@ -149,7 +149,9 @@ func (d *proxyDialer) Dial(ctx context.Context) (*sshClientWrapper, error) {
 
 	errCh := make(chan error, 1)
 	go func() {
-		errCh <- cmd.Wait()
+		if err := cmd.Wait(); err != nil {
+			errCh <- fmt.Errorf("proxy command exited: %w", err)
+		}
 	}()
 
 	clientCh := make(chan *ssh.Client, 1)
