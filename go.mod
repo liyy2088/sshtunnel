@@ -1,4 +1,4 @@
-module github.com/sltc-li/sshtunnel
+module github.com/liyy2088/sshtunnel
 
 go 1.16
 
